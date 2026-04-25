@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>باحث Pinterest الاحترافي - PRO</title>
+    <title>باحث Pinterest الاحترافي - PRO V4</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <script>
@@ -17,17 +17,15 @@
                         pinterest: {
                             DEFAULT: '#E60023',
                             hover: '#ad081b',
-                            light: '#ffe5e5'
                         },
                         pro: {
                             DEFAULT: '#6366f1',
                             hover: '#4f46e5',
-                            light: '#e0e7ff'
                         },
                         dark: {
-                            bg: '#090a0f',      /* Very dark background */
-                            card: '#15171e',    /* Slightly lighter dark for cards */
-                            surface: '#1f222d'  /* For inputs and inner elements */
+                            bg: '#090a0f',
+                            card: '#15171e',
+                            surface: '#1f222d'
                         }
                     },
                     borderRadius: {
@@ -44,7 +42,7 @@
             background-color: #090a0f;
             color: #f3f4f6;
         }
-        /* Custom scrollbar for dark theme */
+        /* Custom scrollbar */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #090a0f; }
         ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
@@ -73,9 +71,16 @@
             from { transform: scale(0.95); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-
         .peer:checked ~ .peer-checked\:after\:translate-x-full {
             transform: translateX(-100%);
+        }
+        kbd {
+            background-color: #1f222d;
+            border: 1px solid #374151;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.75rem;
+            color: #9ca3af;
         }
     </style>
 </head>
@@ -93,45 +98,54 @@
                     <span class="bg-gradient-to-r from-orange-400 to-pink-500 text-white text-[10px] px-3 py-1 rounded-full uppercase tracking-wider font-bold mb-4 shadow-lg shadow-pink-500/30">PRO</span>
                 </h1>
                 <p class="text-gray-400 text-sm md:text-base flex items-center justify-center md:justify-start gap-1 font-medium">
-                    مسرّع أفكار للمصممين بتصميم عصري
+                    مسرّع أفكار للمصممين مدعوم بالذكاء الاصطناعي
                 </p>
             </div>
             
-            <!-- Favorites Top Button -->
-            <button onclick="toggleFavoritesModal()" class="flex items-center gap-2 px-5 py-2.5 bg-dark-card border border-gray-700 hover:border-gray-500 rounded-full text-gray-300 hover:text-white transition-all shadow-lg active:scale-95">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <span class="font-bold text-sm">المفضلة</span>
-                <span id="favCount" class="bg-yellow-500 text-black text-xs py-0.5 px-2 rounded-full font-black">0</span>
-            </button>
+            <div class="flex items-center gap-3">
+                <!-- Settings Button -->
+                <button onclick="toggleSettingsModal()" class="p-2.5 bg-dark-card border border-gray-700 hover:border-gray-500 rounded-full text-gray-300 hover:text-white transition-all shadow-lg active:scale-95" aria-label="الإعدادات" title="إعدادات الذكاء الاصطناعي">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </button>
+                
+                <!-- Favorites Top Button -->
+                <button onclick="toggleFavoritesModal()" class="flex items-center gap-2 px-5 py-2.5 bg-dark-card border border-gray-700 hover:border-gray-500 rounded-full text-gray-300 hover:text-white transition-all shadow-lg active:scale-95" aria-label="المفضلة">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span class="font-bold text-sm">المفضلة</span>
+                    <span id="favCount" class="bg-yellow-500 text-black text-xs py-0.5 px-2 rounded-full font-black">0</span>
+                </button>
+            </div>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
         
-        <!-- Search Area Pro (Modern Island) -->
+        <!-- Search Area Pro -->
         <div class="bg-dark-card rounded-[2.5rem] shadow-2xl shadow-black/50 border border-gray-800 p-6 md:p-8 mb-12 relative z-10 transition-all">
             
+            <div class="flex justify-between text-xs text-gray-500 mb-2 px-4 font-mono">
+                <span>اضغط <kbd>/</kbd> للبحث</span>
+            </div>
+
             <!-- Input Row -->
             <div class="relative flex items-center w-full mb-6 group">
                 <div class="absolute inset-y-0 right-0 flex items-center pr-6 pointer-events-none">
                     <svg class="w-6 h-6 text-gray-500 group-focus-within:text-pro transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
-                <!-- Rounded Pill Input -->
                 <input type="text" id="searchInput" class="block w-full pr-16 pl-14 py-5 text-xl text-white border-2 border-transparent rounded-full bg-dark-surface focus:bg-dark-surface focus:ring-0 focus:border-pro transition-all duration-300 placeholder-gray-500 font-semibold shadow-inner" placeholder="اكتب فكرتك هنا (مثال: تصميم شعار مطعم)...">
                 
-                <button id="clearInputBtn" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white hidden transition-colors p-2 rounded-full bg-gray-800 hover:bg-gray-700" title="مسح النص">
+                <button id="clearInputBtn" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white hidden transition-colors p-2 rounded-full bg-gray-800 hover:bg-gray-700" aria-label="مسح النص" title="مسح النص">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
             </div>
 
-            <!-- Action Tools Row (Pill Shapes) -->
+            <!-- Action Tools Row -->
             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-dark-surface p-3 rounded-full border border-gray-800/50">
                 
                 <!-- Left: Indicators & Toggles -->
                 <div class="flex flex-wrap items-center gap-4 px-4">
-                    <!-- Translate Toggle -->
-                    <label class="flex items-center gap-3 cursor-pointer group" title="Pinterest يعطي نتائج أفضل بالإنجليزية">
+                    <label class="flex items-center gap-3 cursor-pointer group" title="ترجمة تلقائية للإنجليزية">
                         <div class="relative">
                             <input type="checkbox" id="translateToggle" class="sr-only peer" checked>
                             <div class="w-12 h-6 bg-gray-700 rounded-full peer peer-checked:after:-translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:right-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-cyan-400 peer-checked:to-blue-500 shadow-inner"></div>
@@ -142,7 +156,7 @@
                     <div class="hidden sm:block w-px h-6 bg-gray-700"></div>
 
                     <!-- Strength Meter -->
-                    <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <div class="flex items-center gap-3 w-full sm:w-auto" title="قوة تفاصيل البحث">
                         <div class="w-24 h-2.5 bg-gray-800 rounded-full overflow-hidden shadow-inner">
                             <div id="strengthBar" class="h-full bg-red-500 w-0 transition-all duration-500 rounded-full"></div>
                         </div>
@@ -152,7 +166,7 @@
 
                 <!-- Right: Action Buttons -->
                 <div class="flex flex-wrap items-center gap-2 pr-2">
-                    <button id="saveFavBtn" class="text-yellow-500 bg-gray-800 hover:bg-gray-700 focus:ring-2 focus:ring-yellow-500/50 rounded-full p-3 transition-all active:scale-95" title="حفظ الفكرة">
+                    <button id="saveFavBtn" class="text-yellow-500 bg-gray-800 hover:bg-gray-700 focus:ring-2 focus:ring-yellow-500/50 rounded-full p-3 transition-all active:scale-95" aria-label="حفظ الفكرة" title="حفظ الفكرة">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                     </button>
                     
@@ -196,47 +210,90 @@
             </div>
             
             <div id="categoriesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Categories will be generated here by JS -->
+                <!-- Categories JS -->
             </div>
         </div>
 
     </main>
 
+    <!-- Settings Modal (API Key) -->
+    <div id="settingsModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-dark-card border border-gray-800 rounded-[2rem] shadow-2xl w-full max-w-md overflow-hidden modal-enter">
+            <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-dark-surface">
+                <h3 class="text-xl font-black text-white flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-pro"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    إعدادات الذكاء الاصطناعي
+                </h3>
+                <button onclick="toggleSettingsModal()" class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2.5 rounded-full transition-colors" aria-label="إغلاق">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="p-6">
+                <p class="text-sm text-gray-400 mb-4 font-medium">
+                    أدخل مفتاح Google Gemini API الخاص بك لتفعيل ميزات التحسين الديناميكي للأفكار والترجمة الذكية. المفتاح يُحفظ محلياً في متصفحك فقط.
+                </p>
+                <div class="space-y-4">
+                    <div>
+                        <label for="apiKeyInput" class="block text-sm font-bold text-gray-300 mb-2">Gemini API Key</label>
+                        <input type="password" id="apiKeyInput" class="w-full px-4 py-3 bg-dark-surface border border-gray-700 rounded-xl text-white focus:border-pro focus:ring-1 focus:ring-pro transition-all font-mono" placeholder="AIzaSy...">
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="saveApiKey()" class="flex-1 bg-pro hover:bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl transition-colors">
+                            حفظ المفتاح
+                        </button>
+                        <a href="https://aistudio.google.com/app/apikey" target="_blank" class="flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-gray-300 font-bold py-3 px-4 rounded-xl transition-colors text-sm">
+                            الحصول على مفتاح
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Enhance Idea Modal -->
     <div id="enhanceModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-dark-card border border-gray-800 rounded-[2rem] shadow-2xl w-full max-w-2xl overflow-hidden modal-enter flex flex-col max-h-[90vh]">
-            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 text-white flex justify-between items-center">
+        <div class="bg-dark-card border border-gray-800 rounded-[2rem] shadow-2xl w-full max-w-3xl overflow-hidden modal-enter flex flex-col max-h-[90vh]">
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 text-white flex justify-between items-center shrink-0">
                 <div>
                     <h3 class="text-2xl font-black flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path></svg>
-                        تحسين الفكرة
+                        تحسين الفكرة بالذكاء الاصطناعي
                     </h3>
-                    <p class="text-purple-200 text-sm mt-1 font-semibold">صيغ بحث احترافية مولدة لمشروعك</p>
+                    <p class="text-purple-200 text-sm mt-1 font-semibold">صيغ بحث احترافية مولدة خصيصاً لمشروعك</p>
                 </div>
-                <button onclick="closeEnhanceModal()" class="text-white/70 hover:text-white bg-black/20 hover:bg-black/40 p-2.5 rounded-full transition-colors">
+                <button onclick="closeEnhanceModal()" class="text-white/70 hover:text-white bg-black/20 hover:bg-black/40 p-2.5 rounded-full transition-colors" aria-label="إغلاق">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
             </div>
             
-            <div class="p-6 overflow-y-auto space-y-6 bg-dark-card" id="enhanceResults">
-                <!-- Results generated by JS -->
+            <div class="p-6 overflow-y-auto space-y-6 bg-dark-card relative" id="enhanceResults">
+                <!-- Loading State / Results generated by JS -->
             </div>
         </div>
     </div>
 
     <!-- Favorites Modal -->
     <div id="favModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-dark-card border border-gray-800 rounded-[2rem] shadow-2xl w-full max-w-md overflow-hidden modal-enter">
-            <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-dark-surface">
+        <div class="bg-dark-card border border-gray-800 rounded-[2rem] shadow-2xl w-full max-w-md overflow-hidden modal-enter flex flex-col max-h-[80vh]">
+            <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-dark-surface shrink-0">
                 <h3 class="text-xl font-black text-white flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                     المحفوظات
                 </h3>
-                <button onclick="toggleFavoritesModal()" class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2.5 rounded-full transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                </button>
+                <div class="flex gap-2">
+                    <button onclick="exportFavorites()" class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2.5 rounded-full transition-colors" title="تصدير المحفوظات">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </button>
+                    <label class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2.5 rounded-full transition-colors cursor-pointer" title="استيراد المحفوظات">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                        <input type="file" class="hidden" accept=".json" onchange="importFavorites(event)">
+                    </label>
+                    <button onclick="toggleFavoritesModal()" class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2.5 rounded-full transition-colors" aria-label="إغلاق">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
             </div>
-            <div class="p-6 max-h-[60vh] overflow-y-auto bg-dark-card" id="favListContainer">
+            <div class="p-6 overflow-y-auto bg-dark-card flex-grow" id="favListContainer">
                 <!-- Favs via JS -->
             </div>
         </div>
@@ -249,7 +306,7 @@
                 تصميم <span class="text-white">خالد محي الدين</span> &copy; <span id="year"></span>
             </div>
             <div class="mt-4 md:mt-0 flex gap-4 text-xs tracking-widest uppercase text-gray-600">
-                <span>Pinterest Research Pro V3.0 Dark</span>
+                <span>Pinterest Research Pro V4.0 Dark (AI Ready)</span>
             </div>
         </div>
     </footer>
@@ -261,7 +318,7 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // --- 1. DATA DICTIONARIES ---
+        // --- 1. DATA & DICTIONARY ---
         const translationDict = {
             "تصميم جرافيك": "graphic design", "مصمم جرافيك": "graphic designer", "تصميم إبداعي": "creative design", "فن ديجيتال": "digital art", 
             "تصميم بصري": "visual design", "إلهام تصميمي": "design inspiration", "أفكار تصميم": "design ideas", "محفظة أعمال تصميم": "design portfolio", 
@@ -357,7 +414,6 @@
             }
         ];
 
-        // Color Themes to replicate the App UI style
         const bentoThemes = [
             { bg: "bg-gradient-to-br from-orange-400 to-amber-300", text: "text-gray-900", tagBg: "bg-black/10 hover:bg-black/20 text-black", iconBg: "bg-white/30 text-black" },
             { bg: "bg-gradient-to-br from-indigo-500 to-purple-500", text: "text-white", tagBg: "bg-white/10 hover:bg-white/20 text-white", iconBg: "bg-black/20 text-white" },
@@ -372,12 +428,13 @@
         // --- 2. STATE & INITIALIZATION ---
         let selectedFilters = new Set();
         let savedFavorites = JSON.parse(localStorage.getItem('pinterest_favorites')) || [];
+        let geminiApiKey = localStorage.getItem('gemini_api_key') || '';
         
         const searchInput = document.getElementById('searchInput');
         const clearInputBtn = document.getElementById('clearInputBtn');
         const translateToggle = document.getElementById('translateToggle');
         
-        // Render Filters (Pill shapes)
+        // Render Filters
         const filtersContainer = document.getElementById('filtersContainer');
         filters.forEach(filter => {
             const btn = document.createElement('button');
@@ -387,28 +444,22 @@
             filtersContainer.appendChild(btn);
         });
 
-        // Render Categories (Bento Grid Style)
+        // Render Categories
         const categoriesContainer = document.getElementById('categoriesContainer');
         categoriesData.forEach((category, index) => {
             const theme = bentoThemes[index % bentoThemes.length];
             const card = document.createElement('div');
-            
             card.className = `${theme.bg} p-6 rounded-[2rem] shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col`;
-            
             card.innerHTML = `
                 <div class="flex items-center gap-4 mb-6">
                     <div class="w-12 h-12 rounded-full flex items-center justify-center ${theme.iconBg} shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="${category.icon}"></path>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="${category.icon}"></path></svg>
                     </div>
                     <h3 class="font-black text-xl tracking-tight ${theme.text}">${category.title}</h3>
                 </div>
             `;
-            
             const keywordsContainer = document.createElement('div');
             keywordsContainer.className = 'flex flex-wrap gap-2.5 mt-auto';
-            
             category.keywords.forEach(keyword => {
                 const tag = document.createElement('button');
                 tag.className = `text-sm px-4 py-2 rounded-full transition-all active:scale-95 font-bold backdrop-blur-sm ${theme.tagBg}`;
@@ -416,73 +467,88 @@
                 tag.onclick = () => appendKeyword(keyword);
                 keywordsContainer.appendChild(tag);
             });
-
             card.appendChild(keywordsContainer);
             categoriesContainer.appendChild(card);
         });
 
-        // Update Favorites Count
-        function updateFavCount() {
-            document.getElementById('favCount').textContent = savedFavorites.length;
-        }
+        function updateFavCount() { document.getElementById('favCount').textContent = savedFavorites.length; }
         updateFavCount();
 
-        // --- 3. CORE LOGIC FUNCTIONS ---
-
-        function applyLocalDictionary(text) {
-            let translated = text.trim().replace(/\s+/g, ' ');
-            const normalizeText = (t) => t.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي');
-
-            const keys = Object.keys(translationDict).sort((a, b) => b.length - a.length);
-            
-            keys.forEach(key => {
-                let regexStr = key.split('').map(char => {
-                    if (/[أإآا]/.test(char)) return '[أإآا]';
-                    if (/[ةه]/.test(char)) return '[ةه]';
-                    if (/[ىي]/.test(char)) return '[ىي]';
-                    return char;
-                }).join('');
-                try {
-                    translated = translated.replace(new RegExp(regexStr, 'gi'), translationDict[key]);
-                } catch(e) {}
-            });
-
-            let words = translated.split(' ');
-            let finalWords = words.map(word => {
-                if (/^[a-zA-Z\s-]+$/.test(word)) return word;
-                let cleanWord = word.replace(/^(ال|بال|كال|فال|وال|لل|و)/, '');
-                
-                const checkDict = (w) => {
-                    if (translationDict[w]) return translationDict[w];
-                    let normW = normalizeText(w);
-                    for (let k in translationDict) {
-                        if (normalizeText(k) === normW) return translationDict[k];
-                    }
-                    return null;
-                };
-
-                return checkDict(word) || checkDict(cleanWord) || word;
-            });
-
-            return finalWords.join(' ');
+        // --- 3. UTILS & CORE LOGIC ---
+        
+        // Debounce Function for Performance
+        function debounce(func, delay) {
+            let timeoutId;
+            return function (...args) {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => func.apply(this, args), delay);
+            };
         }
 
-        async function translateTextWithAPI(text) {
+        // Modern Clipboard API
+        window.copySpecificText = async function(text) {
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(text);
+                    showToast('تم النسخ بنجاح! 📋');
+                } else {
+                    // Fallback for non-secure contexts
+                    let textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    textArea.style.position = "fixed"; document.body.appendChild(textArea);
+                    textArea.focus(); textArea.select();
+                    document.execCommand('copy');
+                    textArea.remove();
+                    showToast('تم النسخ بنجاح! 📋');
+                }
+            } catch (err) {
+                showToast('فشل النسخ!', 'error');
+                console.error('Clipboard error:', err);
+            }
+        };
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '/' && document.activeElement !== searchInput) {
+                e.preventDefault(); searchInput.focus();
+            }
+            if (e.key === 'Escape') {
+                document.getElementById('enhanceModal').classList.add('hidden');
+                document.getElementById('favModal').classList.add('hidden');
+                document.getElementById('settingsModal').classList.add('hidden');
+            }
+        });
+
+        function applyLocalDictionary(text) {
+            let translated = text.trim();
+            Object.keys(translationDict).forEach(key => {
+                const regex = new RegExp(key, 'gi');
+                translated = translated.replace(regex, translationDict[key]);
+            });
+            return translated;
+        }
+
+        // AI Translate via Gemini (if key exists), fallback to local dict
+        async function translateTextSmart(text) {
             if (!translateToggle.checked) return text;
-            let localTranslated = applyLocalDictionary(text);
-            if (!/[\u0600-\u06FF]/.test(localTranslated)) { return localTranslated; }
+            if (!geminiApiKey) return applyLocalDictionary(text);
 
             try {
-                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ar&tl=en&dt=t&q=${encodeURIComponent(text)}`;
-                const response = await fetch(url);
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: `Translate the following design-related search query from Arabic to English. Return ONLY the English translation, nothing else: "${text}"` }] }]
+                    })
+                });
                 const data = await response.json();
-                let fullTranslation = '';
-                if (data && data[0]) {
-                    data[0].forEach(sentenceObj => { if (sentenceObj[0]) fullTranslation += sentenceObj[0]; });
+                if(data.candidates && data.candidates[0]) {
+                    return data.candidates[0].content.parts[0].text.trim();
                 }
-                return fullTranslation || localTranslated;
+                throw new Error("Translation failed");
             } catch (error) {
-                return localTranslated;
+                console.warn("AI Translation failed, using local dictionary");
+                return applyLocalDictionary(text);
             }
         }
 
@@ -501,23 +567,14 @@
 
         function appendKeyword(keyword) {
             let currentVal = searchInput.value.trim();
-            if (currentVal.length > 0) {
-                if(!currentVal.includes(keyword)) {
-                    searchInput.value = currentVal + ' ' + keyword;
-                    showToast(`تمت الإضافة`);
-                } else {
-                    showToast(`الكلمة موجودة بالفعل!`, 'error');
-                }
-            } else {
+            if (currentVal.length > 0 && !currentVal.includes(keyword)) {
+                searchInput.value = currentVal + ' ' + keyword;
+                showToast(`تمت الإضافة`);
+            } else if (currentVal.length === 0) {
                 searchInput.value = keyword;
                 showToast(`تمت الإضافة`);
             }
-            
-            toggleClearBtn();
-            analyzeStrength();
-            
-            searchInput.classList.add('ring-2', 'ring-pro', 'ring-offset-2', 'ring-offset-dark-card');
-            setTimeout(() => searchInput.classList.remove('ring-2', 'ring-pro', 'ring-offset-2', 'ring-offset-dark-card'), 300);
+            toggleClearBtn(); analyzeStrength();
             searchInput.focus();
         }
 
@@ -525,16 +582,13 @@
             clearInputBtn.classList.toggle('hidden', searchInput.value.trim().length === 0);
         }
 
-        searchInput.addEventListener('input', () => {
-            toggleClearBtn();
-            analyzeStrength();
-        });
+        // Debounced Input Handler
+        searchInput.addEventListener('input', debounce(() => {
+            toggleClearBtn(); analyzeStrength();
+        }, 300));
         
         clearInputBtn.onclick = () => {
-            searchInput.value = '';
-            toggleClearBtn();
-            analyzeStrength();
-            searchInput.focus();
+            searchInput.value = ''; toggleClearBtn(); analyzeStrength(); searchInput.focus();
         };
 
         function analyzeStrength() {
@@ -553,106 +607,167 @@
             const txt = document.getElementById('strengthText');
             
             bar.style.width = `${score}%`;
-            
             if (score === 0) {
-                bar.className = 'h-full w-0 transition-all duration-500 rounded-full';
-                txt.textContent = '-';
+                bar.className = 'h-full w-0 transition-all duration-500 rounded-full'; txt.textContent = '-';
             } else if (score <= 30) {
-                bar.className = 'h-full bg-red-500 transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.6)]';
-                txt.textContent = 'ضعيفة';
+                bar.className = 'h-full bg-red-500 transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.6)]'; txt.textContent = 'ضعيفة';
             } else if (score <= 60) {
-                bar.className = 'h-full bg-yellow-400 transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(250,204,21,0.6)]';
-                txt.textContent = 'جيدة';
+                bar.className = 'h-full bg-yellow-400 transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(250,204,21,0.6)]'; txt.textContent = 'جيدة';
             } else {
-                bar.className = 'h-full bg-green-500 transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.6)]';
-                txt.textContent = 'قوية';
+                bar.className = 'h-full bg-green-500 transition-all duration-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.6)]'; txt.textContent = 'قوية';
             }
         }
 
-        async function getCompiledQueryAsync(translate = true) {
+        async function getCompiledQueryAsync() {
             let parts = [];
             let txt = searchInput.value.trim();
-            if (txt) { parts.push(translate ? await translateTextWithAPI(txt) : txt); }
+            if (txt) { parts.push(await translateTextSmart(txt)); }
             if (selectedFilters.size > 0) parts.push(Array.from(selectedFilters).join(' '));
             return parts.join(' ').trim();
         }
 
-        async function performSearch() {
-            let queryParts = [];
-            const textQuery = searchInput.value.trim();
-            if (textQuery) { queryParts.push(await translateTextWithAPI(textQuery)); }
-            if (selectedFilters.size > 0) { queryParts.push(Array.from(selectedFilters).join(' ')); }
-
-            const finalQuery = queryParts.join(' ').trim();
-            if (finalQuery) {
-                const pinterestUrl = `https://www.pinterest.com/search/pins/?q=${encodeURIComponent(finalQuery)}`;
-                window.open(pinterestUrl, '_blank');
-            } else {
-                searchInput.focus();
-                searchInput.classList.add('ring-2', 'ring-red-500');
-                setTimeout(() => searchInput.classList.remove('ring-2', 'ring-red-500'), 500);
-            }
-        }
-
+        // Main Actions
         document.getElementById('searchBtn').onclick = async function() {
-            const btn = this;
-            const originalHtml = btn.innerHTML;
-            if (searchInput.value.trim() && translateToggle.checked && /[\u0600-\u06FF]/.test(searchInput.value)) {
-                btn.innerHTML = `<svg class="animate-spin h-5 w-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> جاري...`;
-                btn.disabled = true;
-            }
-            try { await performSearch(); } finally { btn.innerHTML = originalHtml; btn.disabled = false; }
+            const btn = this; const originalHtml = btn.innerHTML;
+            if (!searchInput.value.trim() && selectedFilters.size === 0) return;
+            
+            btn.innerHTML = `<svg class="animate-spin h-5 w-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> جاري...`;
+            btn.disabled = true;
+            try { 
+                const finalQuery = await getCompiledQueryAsync();
+                window.open(`https://www.pinterest.com/search/pins/?q=${encodeURIComponent(finalQuery)}`, '_blank');
+            } finally { btn.innerHTML = originalHtml; btn.disabled = false; }
         };
 
-        searchInput.addEventListener('keypress', (e) => { 
-            if (e.key === 'Enter') { document.getElementById('searchBtn').click(); } 
-        });
+        searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') document.getElementById('searchBtn').click(); });
 
         document.getElementById('copyBtn').onclick = async function() {
-            const btn = this;
-            const originalHtml = btn.innerHTML;
-            if (searchInput.value.trim() && translateToggle.checked && /[\u0600-\u06FF]/.test(searchInput.value)) {
-                btn.innerHTML = `<svg class="animate-spin h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> <span class="hidden sm:inline">نسخ...</span>`;
-                btn.disabled = true;
-            }
+            const btn = this; const originalHtml = btn.innerHTML;
+            if (!searchInput.value.trim() && selectedFilters.size === 0) return;
+            
+            btn.innerHTML = `<svg class="animate-spin h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> <span class="hidden sm:inline">نسخ...</span>`;
+            btn.disabled = true;
             try {
-                const finalQuery = await getCompiledQueryAsync(translateToggle.checked);
-                if (finalQuery) {
-                    try {
-                        let textArea = document.createElement("textarea");
-                        textArea.value = finalQuery;
-                        textArea.style.position = "fixed";
-                        document.body.appendChild(textArea);
-                        textArea.select();
-                        document.execCommand('copy');
-                        textArea.remove();
-                        showToast('تم النسخ بنجاح! 📋');
-                    } catch (err) { showToast('فشل النسخ!', 'error'); }
-                } else { showToast('لا يوجد شيء لنسخه!', 'error'); }
+                const finalQuery = await getCompiledQueryAsync();
+                if (finalQuery) await window.copySpecificText(finalQuery);
             } finally { btn.innerHTML = originalHtml; btn.disabled = false; }
         };
 
         document.getElementById('clearBtn').onclick = () => {
-            searchInput.value = '';
-            toggleClearBtn();
-            selectedFilters.clear();
+            searchInput.value = ''; toggleClearBtn(); selectedFilters.clear();
             filtersContainer.querySelectorAll('button').forEach(btn => {
                 btn.classList.remove('bg-white', 'text-black', 'border-white');
                 btn.classList.add('bg-dark-surface', 'text-gray-400', 'border-gray-700');
             });
-            analyzeStrength();
+            analyzeStrength(); searchInput.focus();
         };
 
-        // --- 4. FAVORITES ---
+        // --- 4. SETTINGS (API KEY) ---
+        function toggleSettingsModal() {
+            const modal = document.getElementById('settingsModal');
+            document.getElementById('apiKeyInput').value = geminiApiKey;
+            modal.classList.toggle('hidden');
+        }
+
+        function saveApiKey() {
+            geminiApiKey = document.getElementById('apiKeyInput').value.trim();
+            localStorage.setItem('gemini_api_key', geminiApiKey);
+            showToast('تم حفظ إعدادات الذكاء الاصطناعي');
+            toggleSettingsModal();
+        }
+
+        // --- 5. AI ENHANCEMENT (Dynamic) ---
+        function closeEnhanceModal() { document.getElementById('enhanceModal').classList.add('hidden'); }
+
+        document.getElementById('enhanceBtn').onclick = async function() {
+            const rawText = searchInput.value.trim();
+            if (!rawText && selectedFilters.size === 0) { showToast('اكتب فكرة أولاً!', 'error'); searchInput.focus(); return; }
+            if (!geminiApiKey) {
+                showToast('يرجى إدخال مفتاح الذكاء الاصطناعي أولاً', 'error');
+                toggleSettingsModal();
+                return;
+            }
+
+            const btn = this; const originalHtml = btn.innerHTML;
+            btn.innerHTML = `<svg class="animate-spin h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> جاري التوليد...`;
+            btn.disabled = true;
+
+            const container = document.getElementById('enhanceResults');
+            container.innerHTML = `<div class="flex justify-center py-12"><div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-pro"></div></div>`;
+            document.getElementById('enhanceModal').classList.remove('hidden');
+
+            try {
+                const baseEnglish = await translateTextSmart(rawText);
+                const prompt = `
+You are a professional design prompt engineer. The user is looking for design inspiration for: "${baseEnglish}".
+Generate exactly 3 advanced, highly detailed search queries for this topic.
+Return the response ONLY as a valid JSON array of objects, with no markdown formatting or extra text.
+Format:
+[
+  { "title": "For Behance (UI/UX & Cases)", "desc": "Best for detailed case studies", "badge": "PRO", "color": "blue", "query": "..." },
+  { "title": "For AI Generators (Midjourney/DALL-E)", "desc": "Highly descriptive image prompt", "badge": "AI Art", "color": "purple", "query": "..." },
+  { "title": "For Pinterest (Aesthetic)", "desc": "Clean and modern moodboard search", "badge": "Inspiration", "color": "red", "query": "..." }
+]`;
+
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }],
+                        generationConfig: { responseMimeType: "application/json" }
+                    })
+                });
+
+                if(!response.ok) throw new Error("API Error");
+                const data = await response.json();
+                const jsonStr = data.candidates[0].content.parts[0].text;
+                const variations = JSON.parse(jsonStr);
+
+                container.innerHTML = ''; 
+                variations.forEach(v => {
+                    const colorClasses = {
+                        blue: 'bg-blue-500/10 border-blue-500/30 text-blue-400',
+                        purple: 'bg-purple-500/10 border-purple-500/30 text-purple-400',
+                        red: 'bg-red-500/10 border-red-500/30 text-red-400',
+                    };
+                    const colorClass = colorClasses[v.color] || colorClasses.blue;
+
+                    const card = document.createElement('div');
+                    card.className = 'bg-dark-surface p-6 rounded-[2rem] border border-gray-800 relative shadow-lg hover:border-gray-600 transition-colors';
+                    card.innerHTML = `
+                        <span class="absolute top-5 left-5 text-[10px] font-black px-3 py-1 rounded-full border ${colorClass}">${v.badge}</span>
+                        <h4 class="font-black text-white text-lg mb-1 pr-2" dir="ltr">${v.title}</h4>
+                        <p class="text-sm text-gray-400 mb-4 pr-2 font-medium" dir="ltr">${v.desc}</p>
+                        <div class="bg-[#090a0f] p-4 rounded-2xl border border-gray-800 font-mono text-sm text-gray-300 text-left mb-5 break-words selection:bg-pro" dir="ltr">
+                            ${v.query}
+                        </div>
+                        <div class="flex gap-3">
+                            <button onclick="window.copySpecificText('${v.query.replace(/'/g, "\\'")}')" class="flex-1 bg-gray-800 hover:bg-gray-700 text-white px-4 py-3 rounded-full text-sm font-bold transition-colors flex justify-center items-center gap-2">
+                                نسخ النص
+                            </button>
+                            <button onclick="window.open('https://www.pinterest.com/search/pins/?q=${encodeURIComponent(v.query)}', '_blank')" class="flex-1 bg-white hover:bg-gray-200 text-black px-4 py-3 rounded-full text-sm font-bold transition-colors flex justify-center items-center gap-2">
+                                بحث Pinterest
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = `<div class="text-center text-red-400 py-8 font-bold">حدث خطأ في التوليد. تأكد من صحة مفتاح API الخاص بك.</div>`;
+            } finally {
+                btn.innerHTML = originalHtml; btn.disabled = false;
+            }
+        };
+
+        // --- 6. FAVORITES & EXPORT/IMPORT ---
         document.getElementById('saveFavBtn').onclick = () => {
             const txt = searchInput.value.trim();
             if(!txt && selectedFilters.size === 0) { showToast('لا يوجد شيء لحفظه', 'error'); return; }
             const newFav = { id: Date.now(), query: txt, filters: Array.from(selectedFilters), date: new Date().toLocaleDateString('ar-EG') };
             savedFavorites.unshift(newFav);
             localStorage.setItem('pinterest_favorites', JSON.stringify(savedFavorites));
-            updateFavCount();
-            renderFavorites();
-            showToast('تم الحفظ ⭐');
+            updateFavCount(); renderFavorites(); showToast('تم الحفظ ⭐');
         };
 
         function toggleFavoritesModal() {
@@ -681,7 +796,7 @@
                             ${filtersHtml}
                             <p class="text-xs text-gray-500 mt-3 font-semibold">${fav.date}</p>
                         </div>
-                        <button onclick="deleteFavorite(${fav.id})" class="text-gray-500 hover:text-red-500 p-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors opacity-0 group-hover:opacity-100">
+                        <button onclick="deleteFavorite(${fav.id})" aria-label="حذف" class="text-gray-500 hover:text-red-500 p-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2-2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                         </button>
                     </div>
@@ -708,76 +823,37 @@
             updateFavCount(); renderFavorites();
         }
 
-        // --- 5. ENHANCE IDEA ---
-        function closeEnhanceModal() { document.getElementById('enhanceModal').classList.add('hidden'); }
-
-        document.getElementById('enhanceBtn').onclick = async function() {
-            const rawText = searchInput.value.trim();
-            if (!rawText && selectedFilters.size === 0) { showToast('اكتب فكرة أولاً!', 'error'); searchInput.focus(); return; }
-
-            const btn = this;
-            const originalHtml = btn.innerHTML;
-            btn.innerHTML = `<svg class="animate-spin h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> جاري التحسين...`;
-            btn.disabled = true;
-
-            try {
-                const baseEnglish = await getCompiledQueryAsync(true);
-                const container = document.getElementById('enhanceResults');
-                container.innerHTML = ''; 
-
-                const variations = [
-                    { title: 'Behance / Dribbble (UI & Branding)', desc: 'للبحث عن دراسات حالة متكاملة', badge: 'PRO', color: 'blue', query: `${baseEnglish} UI UX Behance Dribbble case study presentation minimalist` },
-                    { title: 'Midjourney / AI Prompt', desc: 'لتوليد الصور بالذكاء الاصطناعي', badge: 'AI Art', color: 'purple', query: `${baseEnglish}, hyper-realistic, 8k resolution, masterpiece, trending on artstation, cinematic lighting, highly detailed` },
-                    { title: 'Pinterest (Deep Search)', desc: 'لأفضل إلهام مرئي نقي', badge: 'Inspiration', color: 'red', query: `${baseEnglish} aesthetic modern design inspiration flat vector premium` }
-                ];
-
-                variations.forEach(v => {
-                    const colorClasses = {
-                        blue: 'bg-blue-500/10 border-blue-500/30 text-blue-400',
-                        purple: 'bg-purple-500/10 border-purple-500/30 text-purple-400',
-                        red: 'bg-red-500/10 border-red-500/30 text-red-400',
-                    };
-
-                    const card = document.createElement('div');
-                    card.className = 'bg-dark-surface p-6 rounded-[2rem] border border-gray-800 relative shadow-lg';
-                    card.innerHTML = `
-                        <span class="absolute top-5 left-5 text-[10px] font-black px-3 py-1 rounded-full border ${colorClasses[v.color]}">${v.badge}</span>
-                        <h4 class="font-black text-white text-lg mb-1 pr-2">${v.title}</h4>
-                        <p class="text-sm text-gray-400 mb-4 pr-2 font-medium">${v.desc}</p>
-                        <div class="bg-[#090a0f] p-4 rounded-2xl border border-gray-800 font-mono text-sm text-gray-300 text-left mb-5 break-words" dir="ltr">
-                            ${v.query}
-                        </div>
-                        <div class="flex gap-3">
-                            <button onclick="copySpecificText('${v.query}')" class="flex-1 bg-gray-800 hover:bg-gray-700 text-white px-4 py-3 rounded-full text-sm font-bold transition-colors flex justify-center items-center gap-2">
-                                نسخ النص
-                            </button>
-                            <button onclick="window.open('https://www.pinterest.com/search/pins/?q=${encodeURIComponent(v.query)}', '_blank')" class="flex-1 bg-white hover:bg-gray-200 text-black px-4 py-3 rounded-full text-sm font-bold transition-colors flex justify-center items-center gap-2">
-                                بحث فوراً
-                            </button>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-
-                document.getElementById('enhanceModal').classList.remove('hidden');
-            } catch (err) {
-                showToast('حدث خطأ أثناء التحسين', 'error');
-            } finally {
-                btn.innerHTML = originalHtml; btn.disabled = false;
-            }
+        window.exportFavorites = function() {
+            if(savedFavorites.length === 0) { showToast('لا توجد بيانات للتصدير', 'error'); return; }
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(savedFavorites));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "pinterest_pro_favorites.json");
+            document.body.appendChild(downloadAnchorNode); 
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+            showToast('تم التصدير بنجاح');
         };
 
-        window.copySpecificText = function(text) {
-            let textArea = document.createElement("textarea");
-            textArea.value = text;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            textArea.remove();
-            showToast('تم النسخ 📋');
+        window.importFavorites = function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if(Array.isArray(imported)) {
+                        savedFavorites = imported;
+                        localStorage.setItem('pinterest_favorites', JSON.stringify(savedFavorites));
+                        updateFavCount(); renderFavorites(); showToast('تم الاستيراد بنجاح');
+                    } else { throw new Error('Invalid format'); }
+                } catch (err) { showToast('ملف غير صالح', 'error'); }
+            };
+            reader.readAsText(file);
+            event.target.value = ''; // Reset input
         };
 
-        // Global Toast
+        // --- GLOBAL TOAST ---
         function showToast(message, type = 'success') {
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
@@ -796,11 +872,11 @@
             }, 3000);
         }
 
+        // Close modals on outside click
         window.onclick = function(event) {
-            const favModal = document.getElementById('favModal');
-            const enhanceModal = document.getElementById('enhanceModal');
-            if (event.target === favModal) toggleFavoritesModal();
-            if (event.target === enhanceModal) closeEnhanceModal();
+            if (event.target === document.getElementById('favModal')) toggleFavoritesModal();
+            if (event.target === document.getElementById('enhanceModal')) closeEnhanceModal();
+            if (event.target === document.getElementById('settingsModal')) toggleSettingsModal();
         }
     </script>
 </body>
