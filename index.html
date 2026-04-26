@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>باحث Pinterest الاحترافي - PRO V4</title>
+    <title>باحث Pinterest الاحترافي - PRO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <script>
@@ -43,7 +43,8 @@
             color: #f3f4f6;
         }
         /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        @media (min-width: 640px) { ::-webkit-scrollbar { width: 8px; height: 8px; } }
         ::-webkit-scrollbar-track { background: #090a0f; }
         ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
@@ -79,7 +80,7 @@
             border: 1px solid #374151;
             border-radius: 4px;
             padding: 2px 6px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #9ca3af;
         }
     </style>
@@ -87,114 +88,104 @@
 <body class="antialiased min-h-screen flex flex-col relative selection:bg-pro selection:text-white">
 
     <!-- Header Section -->
-    <header class="glass-header sticky top-0 z-40 border-b border-gray-800 shadow-sm py-4 md:py-6 transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-center md:text-right">
-                <h1 class="text-3xl md:text-4xl font-black text-white mb-1 flex items-center justify-center md:justify-start gap-2 tracking-tight">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#E60023">
+    <header class="glass-header sticky top-0 z-40 border-b border-gray-800 shadow-sm py-3 sm:py-4 md:py-6 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+            <div class="text-center sm:text-right">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-1.5 sm:mb-1 flex items-center justify-center sm:justify-start gap-2 tracking-tight">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="#E60023">
                         <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.951-7.252 4.185 0 7.439 2.981 7.439 6.965 0 4.162-2.624 7.513-6.275 7.513-1.225 0-2.376-.637-2.771-1.391l-.754 2.875c-.274 1.045-1.018 2.352-1.517 3.149 1.123.344 2.316.529 3.551.529 6.621 0 11.988-5.367 11.988-11.987C24 5.367 18.638 0 12.017 0z"/>
                     </svg>
                     باحث الإلهام
-                    <span class="bg-gradient-to-r from-orange-400 to-pink-500 text-white text-[10px] px-3 py-1 rounded-full uppercase tracking-wider font-bold mb-4 shadow-lg shadow-pink-500/30">PRO</span>
+                    <span class="bg-gradient-to-r from-orange-400 to-pink-500 text-white text-[9px] sm:text-[10px] px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase tracking-wider font-bold mb-3 sm:mb-4 shadow-lg shadow-pink-500/30">PRO</span>
                 </h1>
-                <p class="text-gray-400 text-sm md:text-base flex items-center justify-center md:justify-start gap-1 font-medium">
-                    مسرّع أفكار للمصممين مدعوم بالذكاء الاصطناعي
+                <p class="text-gray-400 text-xs sm:text-sm md:text-base flex items-center justify-center sm:justify-start gap-1 font-medium">
+                    مسرّع أفكار للمصممين بتصميم عصري
                 </p>
             </div>
             
-            <div class="flex items-center gap-3">
-                <!-- Settings Button -->
-                <button onclick="toggleSettingsModal()" class="p-2.5 bg-dark-card border border-gray-700 hover:border-gray-500 rounded-full text-gray-300 hover:text-white transition-all shadow-lg active:scale-95" aria-label="الإعدادات" title="إعدادات الذكاء الاصطناعي">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                </button>
-                
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-center">
                 <!-- Favorites Top Button -->
-                <button onclick="toggleFavoritesModal()" class="flex items-center gap-2 px-5 py-2.5 bg-dark-card border border-gray-700 hover:border-gray-500 rounded-full text-gray-300 hover:text-white transition-all shadow-lg active:scale-95" aria-label="المفضلة">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                    <span class="font-bold text-sm">المفضلة</span>
-                    <span id="favCount" class="bg-yellow-500 text-black text-xs py-0.5 px-2 rounded-full font-black">0</span>
+                <button onclick="toggleFavoritesModal()" class="flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-dark-card border border-gray-700 hover:border-gray-500 rounded-full text-gray-300 hover:text-white transition-all shadow-lg active:scale-95 w-full sm:w-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span class="font-bold text-xs sm:text-sm">المفضلة</span>
+                    <span id="favCount" class="bg-yellow-500 text-black text-[10px] sm:text-xs py-0.5 px-2 rounded-full font-black">0</span>
                 </button>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 w-full">
         
         <!-- Search Area Pro -->
-        <div class="bg-dark-card rounded-[2.5rem] shadow-2xl shadow-black/50 border border-gray-800 p-6 md:p-8 mb-12 relative z-10 transition-all">
+        <div class="bg-dark-card rounded-[1.5rem] sm:rounded-[2.5rem] shadow-2xl shadow-black/50 border border-gray-800 p-5 sm:p-6 md:p-8 mb-8 sm:mb-12 relative z-10 transition-all">
             
-            <div class="flex justify-between text-xs text-gray-500 mb-2 px-4 font-mono">
+            <div class="flex justify-between text-[10px] sm:text-xs text-gray-500 mb-2 px-3 sm:px-4 font-mono">
                 <span>اضغط <kbd>/</kbd> للبحث</span>
             </div>
 
             <!-- Input Row -->
-            <div class="relative flex items-center w-full mb-6 group">
-                <div class="absolute inset-y-0 right-0 flex items-center pr-6 pointer-events-none">
-                    <svg class="w-6 h-6 text-gray-500 group-focus-within:text-pro transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <div class="relative flex items-center w-full mb-4 sm:mb-6 group">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-4 sm:pr-6 pointer-events-none">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-500 group-focus-within:text-pro transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
-                <input type="text" id="searchInput" class="block w-full pr-16 pl-14 py-5 text-xl text-white border-2 border-transparent rounded-full bg-dark-surface focus:bg-dark-surface focus:ring-0 focus:border-pro transition-all duration-300 placeholder-gray-500 font-semibold shadow-inner" placeholder="اكتب فكرتك هنا (مثال: تصميم شعار مطعم)...">
+                <input type="text" id="searchInput" class="block w-full pr-12 sm:pr-16 pl-12 sm:pl-14 py-3.5 sm:py-5 text-base sm:text-xl text-white border-2 border-transparent rounded-full bg-dark-surface focus:bg-dark-surface focus:ring-0 focus:border-pro transition-all duration-300 placeholder-gray-500 font-semibold shadow-inner" placeholder="اكتب فكرتك هنا...">
                 
-                <button id="clearInputBtn" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white hidden transition-colors p-2 rounded-full bg-gray-800 hover:bg-gray-700" aria-label="مسح النص" title="مسح النص">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <button id="clearInputBtn" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white hidden transition-colors p-1.5 sm:p-2 rounded-full bg-gray-800 hover:bg-gray-700" aria-label="مسح النص" title="مسح النص">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
             </div>
 
             <!-- Action Tools Row -->
-            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-dark-surface p-3 rounded-full border border-gray-800/50">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4 bg-dark-surface p-2.5 sm:p-3 rounded-2xl lg:rounded-full border border-gray-800/50">
                 
                 <!-- Left: Indicators & Toggles -->
-                <div class="flex flex-wrap items-center gap-4 px-4">
-                    <label class="flex items-center gap-3 cursor-pointer group" title="ترجمة تلقائية للإنجليزية">
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 px-2 sm:px-4">
+                    <label class="flex items-center gap-2 sm:gap-3 cursor-pointer group" title="ترجمة تلقائية للإنجليزية">
                         <div class="relative">
                             <input type="checkbox" id="translateToggle" class="sr-only peer" checked>
-                            <div class="w-12 h-6 bg-gray-700 rounded-full peer peer-checked:after:-translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:right-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-cyan-400 peer-checked:to-blue-500 shadow-inner"></div>
+                            <div class="w-10 sm:w-12 h-5 sm:h-6 bg-gray-700 rounded-full peer peer-checked:after:-translate-x-5 sm:peer-checked:after:-translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:right-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 sm:after:h-5 sm:after:w-5 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-cyan-400 peer-checked:to-blue-500 shadow-inner"></div>
                         </div>
-                        <span class="text-sm font-bold text-gray-300 group-hover:text-white transition-colors">ترجمة EN</span>
+                        <span class="text-xs sm:text-sm font-bold text-gray-300 group-hover:text-white transition-colors">ترجمة EN</span>
                     </label>
 
-                    <div class="hidden sm:block w-px h-6 bg-gray-700"></div>
+                    <div class="hidden sm:block w-px h-5 sm:h-6 bg-gray-700"></div>
 
                     <!-- Strength Meter -->
-                    <div class="flex items-center gap-3 w-full sm:w-auto" title="قوة تفاصيل البحث">
-                        <div class="w-24 h-2.5 bg-gray-800 rounded-full overflow-hidden shadow-inner">
+                    <div class="flex items-center gap-2 sm:gap-3" title="قوة تفاصيل البحث">
+                        <div class="w-20 sm:w-24 h-2 sm:h-2.5 bg-gray-800 rounded-full overflow-hidden shadow-inner">
                             <div id="strengthBar" class="h-full bg-red-500 w-0 transition-all duration-500 rounded-full"></div>
                         </div>
-                        <span id="strengthText" class="text-xs font-bold text-gray-500 w-12">-</span>
+                        <span id="strengthText" class="text-[10px] sm:text-xs font-bold text-gray-500 w-10 sm:w-12">-</span>
                     </div>
                 </div>
 
                 <!-- Right: Action Buttons -->
-                <div class="flex flex-wrap items-center gap-2 pr-2">
-                    <button id="saveFavBtn" class="text-yellow-500 bg-gray-800 hover:bg-gray-700 focus:ring-2 focus:ring-yellow-500/50 rounded-full p-3 transition-all active:scale-95" aria-label="حفظ الفكرة" title="حفظ الفكرة">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <div class="flex flex-wrap items-center justify-center lg:justify-end gap-2 px-1 sm:pr-2 w-full lg:w-auto mt-2 lg:mt-0">
+                    <button id="saveFavBtn" class="flex-1 lg:flex-none flex justify-center text-yellow-500 bg-gray-800 hover:bg-gray-700 focus:ring-2 focus:ring-yellow-500/50 rounded-full p-2.5 sm:p-3 transition-all active:scale-95" aria-label="حفظ الفكرة" title="حفظ الفكرة">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                     </button>
                     
-                    <button id="copyBtn" class="text-gray-300 bg-gray-800 hover:bg-gray-700 hover:text-white rounded-full text-sm px-5 py-3 font-bold transition-all flex items-center gap-2 active:scale-95">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                        <span class="hidden sm:inline">نسخ</span>
+                    <button id="copyBtn" class="flex-1 lg:flex-none flex justify-center text-gray-300 bg-gray-800 hover:bg-gray-700 hover:text-white rounded-full text-xs sm:text-sm px-4 py-2.5 sm:px-5 sm:py-3 font-bold transition-all items-center gap-1.5 sm:gap-2 active:scale-95">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        <span>نسخ</span>
                     </button>
 
-                    <button id="enhanceBtn" class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 rounded-full text-sm px-5 py-3 font-bold transition-all flex items-center gap-2 shadow-lg shadow-purple-500/25 active:scale-95">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path></svg>
-                        الذكاء الاصطناعي
-                    </button>
-                    
-                    <button id="searchBtn" class="text-white bg-gradient-to-r from-pinterest to-[#ff2a4d] hover:brightness-110 rounded-full text-sm px-6 py-3 font-bold transition-all flex items-center gap-2 shadow-lg shadow-pinterest/30 active:scale-95">
+                    <button id="searchBtn" class="flex-[2] lg:flex-none text-white bg-gradient-to-r from-pinterest to-[#ff2a4d] hover:brightness-110 rounded-full text-xs sm:text-sm px-5 py-2.5 sm:px-6 sm:py-3 font-bold transition-all flex justify-center items-center gap-1.5 sm:gap-2 shadow-lg shadow-pinterest/30 active:scale-95">
                         بحث الآن
                     </button>
                 </div>
             </div>
 
             <!-- Filters Area -->
-            <div class="mt-8 px-2">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-sm font-bold text-gray-400">فلاتر مساعدة (اختياري)</h3>
-                    <button id="clearBtn" class="text-xs text-gray-400 hover:text-white font-bold transition-colors bg-dark-surface px-4 py-1.5 rounded-full border border-gray-700 hover:border-gray-500">
+            <div class="mt-6 sm:mt-8 px-1 sm:px-2">
+                <div class="flex items-center justify-between mb-3 sm:mb-4">
+                    <h3 class="text-xs sm:text-sm font-bold text-gray-400">فلاتر مساعدة (اختياري)</h3>
+                    <button id="clearBtn" class="text-[10px] sm:text-xs text-gray-400 hover:text-white font-bold transition-colors bg-dark-surface px-3 py-1 sm:px-4 sm:py-1.5 rounded-full border border-gray-700 hover:border-gray-500">
                         تفريغ الكل
                     </button>
                 </div>
-                <div id="filtersContainer" class="flex flex-wrap gap-2.5">
+                <div id="filtersContainer" class="flex flex-wrap gap-2 sm:gap-2.5">
                     <!-- Filters via JS -->
                 </div>
             </div>
@@ -202,117 +193,61 @@
 
         <!-- Bento Grid / Keywords Area -->
         <div>
-            <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-2 px-2">
+            <div class="mb-6 sm:mb-8 flex flex-col md:flex-row md:items-end justify-between gap-2 px-1 sm:px-2 text-center md:text-right">
                 <div>
-                    <h2 class="text-2xl md:text-3xl font-black text-white tracking-tight">مكتبة الإلهام</h2>
-                    <p class="text-gray-400 mt-1 font-medium">اضغط على البطاقات لإضافة الكلمات. مترجمة تلقائياً للإنجليزية.</p>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">مكتبة الإلهام</h2>
+                    <p class="text-gray-400 mt-1 text-xs sm:text-sm font-medium">اضغط على البطاقات لإضافة الكلمات. مترجمة تلقائياً للإنجليزية.</p>
                 </div>
             </div>
             
-            <div id="categoriesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div id="categoriesContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
                 <!-- Categories JS -->
             </div>
         </div>
 
     </main>
 
-    <!-- Settings Modal (API Key) -->
-    <div id="settingsModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-dark-card border border-gray-800 rounded-[2rem] shadow-2xl w-full max-w-md overflow-hidden modal-enter">
-            <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-dark-surface">
-                <h3 class="text-xl font-black text-white flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-pro"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                    إعدادات الذكاء الاصطناعي
-                </h3>
-                <button onclick="toggleSettingsModal()" class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2.5 rounded-full transition-colors" aria-label="إغلاق">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                </button>
-            </div>
-            <div class="p-6">
-                <p class="text-sm text-gray-400 mb-4 font-medium">
-                    أدخل مفتاح Google Gemini API الخاص بك لتفعيل ميزات التحسين الديناميكي للأفكار والترجمة الذكية. المفتاح يُحفظ محلياً في متصفحك فقط.
-                </p>
-                <div class="space-y-4">
-                    <div>
-                        <label for="apiKeyInput" class="block text-sm font-bold text-gray-300 mb-2">Gemini API Key</label>
-                        <input type="password" id="apiKeyInput" class="w-full px-4 py-3 bg-dark-surface border border-gray-700 rounded-xl text-white focus:border-pro focus:ring-1 focus:ring-pro transition-all font-mono" placeholder="AIzaSy...">
-                    </div>
-                    <div class="flex gap-3">
-                        <button onclick="saveApiKey()" class="flex-1 bg-pro hover:bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl transition-colors">
-                            حفظ المفتاح
-                        </button>
-                        <a href="https://aistudio.google.com/app/apikey" target="_blank" class="flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-gray-300 font-bold py-3 px-4 rounded-xl transition-colors text-sm">
-                            الحصول على مفتاح
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Enhance Idea Modal -->
-    <div id="enhanceModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-dark-card border border-gray-800 rounded-[2rem] shadow-2xl w-full max-w-3xl overflow-hidden modal-enter flex flex-col max-h-[90vh]">
-            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 text-white flex justify-between items-center shrink-0">
-                <div>
-                    <h3 class="text-2xl font-black flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path></svg>
-                        تحسين الفكرة بالذكاء الاصطناعي
-                    </h3>
-                    <p class="text-purple-200 text-sm mt-1 font-semibold">صيغ بحث احترافية مولدة خصيصاً لمشروعك</p>
-                </div>
-                <button onclick="closeEnhanceModal()" class="text-white/70 hover:text-white bg-black/20 hover:bg-black/40 p-2.5 rounded-full transition-colors" aria-label="إغلاق">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                </button>
-            </div>
-            
-            <div class="p-6 overflow-y-auto space-y-6 bg-dark-card relative" id="enhanceResults">
-                <!-- Loading State / Results generated by JS -->
-            </div>
-        </div>
-    </div>
-
     <!-- Favorites Modal -->
-    <div id="favModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-dark-card border border-gray-800 rounded-[2rem] shadow-2xl w-full max-w-md overflow-hidden modal-enter flex flex-col max-h-[80vh]">
-            <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-dark-surface shrink-0">
-                <h3 class="text-xl font-black text-white flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                    المحفوظات
+    <div id="favModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-dark-card border border-gray-800 rounded-[1.5rem] sm:rounded-[2rem] shadow-2xl w-full max-w-md overflow-hidden modal-enter flex flex-col max-h-[85vh]">
+            <div class="p-4 sm:p-5 md:p-6 border-b border-gray-800 flex justify-between items-start md:items-center bg-dark-surface gap-3 sm:gap-4 shrink-0">
+                <h3 class="text-base sm:text-lg md:text-xl font-black text-white flex items-start gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="#fbbf24" stroke="#fbbf24" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span class="leading-tight">المحفوظات</span>
                 </h3>
-                <div class="flex gap-2">
-                    <button onclick="exportFavorites()" class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2.5 rounded-full transition-colors" title="تصدير المحفوظات">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <div class="flex gap-1.5 md:gap-2 shrink-0 flex-wrap justify-end">
+                    <button onclick="exportFavorites()" class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2 sm:p-2.5 rounded-full transition-colors" title="تصدير المحفوظات">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                     </button>
-                    <label class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2.5 rounded-full transition-colors cursor-pointer" title="استيراد المحفوظات">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <label class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2 sm:p-2.5 rounded-full transition-colors cursor-pointer" title="استيراد المحفوظات">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
                         <input type="file" class="hidden" accept=".json" onchange="importFavorites(event)">
                     </label>
-                    <button onclick="toggleFavoritesModal()" class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2.5 rounded-full transition-colors" aria-label="إغلاق">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <button onclick="toggleFavoritesModal()" class="text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 p-2 sm:p-2.5 rounded-full transition-colors" aria-label="إغلاق">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-[18px] sm:h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                     </button>
                 </div>
             </div>
-            <div class="p-6 overflow-y-auto bg-dark-card flex-grow" id="favListContainer">
+            <div class="p-4 sm:p-6 overflow-y-auto bg-dark-card flex-grow" id="favListContainer">
                 <!-- Favs via JS -->
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark-card border-t border-gray-800 py-8 relative z-10 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm font-bold">
-            <div>
+    <footer class="bg-dark-card border-t border-gray-800 py-6 sm:py-8 relative z-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs sm:text-sm font-bold">
+            <div class="text-center sm:text-right">
                 تصميم <span class="text-white">خالد محي الدين</span> &copy; <span id="year"></span>
             </div>
-            <div class="mt-4 md:mt-0 flex gap-4 text-xs tracking-widest uppercase text-gray-600">
-                <span>Pinterest Research Pro V4.0 Dark (AI Ready)</span>
+            <div class="mt-3 md:mt-0 flex gap-4 text-[10px] sm:text-xs tracking-widest uppercase text-gray-600 text-center">
+                <span>Pinterest Research Pro V4.5 Dark (Mobile)</span>
             </div>
         </div>
     </footer>
 
     <!-- Toast Notifications Container -->
-    <div id="toastContainer" class="fixed bottom-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none"></div>
+    <div id="toastContainer" class="fixed bottom-4 sm:bottom-6 left-0 right-0 sm:left-auto sm:right-6 z-[100] flex flex-col gap-2 sm:gap-3 pointer-events-none items-center sm:items-end px-4 sm:px-0"></div>
 
     <!-- Application Logic -->
     <script>
@@ -428,7 +363,6 @@
         // --- 2. STATE & INITIALIZATION ---
         let selectedFilters = new Set();
         let savedFavorites = JSON.parse(localStorage.getItem('pinterest_favorites')) || [];
-        let geminiApiKey = localStorage.getItem('gemini_api_key') || '';
         
         const searchInput = document.getElementById('searchInput');
         const clearInputBtn = document.getElementById('clearInputBtn');
@@ -438,7 +372,7 @@
         const filtersContainer = document.getElementById('filtersContainer');
         filters.forEach(filter => {
             const btn = document.createElement('button');
-            btn.className = 'px-5 py-2 rounded-full text-sm font-bold border border-gray-700 bg-dark-surface text-gray-400 hover:border-gray-400 hover:text-white transition-all duration-200 active:scale-95';
+            btn.className = 'px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-bold border border-gray-700 bg-dark-surface text-gray-400 hover:border-gray-400 hover:text-white transition-all duration-200 active:scale-95';
             btn.textContent = filter;
             btn.onclick = () => toggleFilter(btn, filter);
             filtersContainer.appendChild(btn);
@@ -449,20 +383,20 @@
         categoriesData.forEach((category, index) => {
             const theme = bentoThemes[index % bentoThemes.length];
             const card = document.createElement('div');
-            card.className = `${theme.bg} p-6 rounded-[2rem] shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col`;
+            card.className = `${theme.bg} p-5 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col`;
             card.innerHTML = `
-                <div class="flex items-center gap-4 mb-6">
-                    <div class="w-12 h-12 rounded-full flex items-center justify-center ${theme.iconBg} shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="${category.icon}"></path></svg>
+                <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${theme.iconBg} shadow-sm shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-[22px] sm:h-[22px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="${category.icon}"></path></svg>
                     </div>
-                    <h3 class="font-black text-xl tracking-tight ${theme.text}">${category.title}</h3>
+                    <h3 class="font-black text-lg sm:text-xl tracking-tight ${theme.text} leading-tight">${category.title}</h3>
                 </div>
             `;
             const keywordsContainer = document.createElement('div');
-            keywordsContainer.className = 'flex flex-wrap gap-2.5 mt-auto';
+            keywordsContainer.className = 'flex flex-wrap gap-2 sm:gap-2.5 mt-auto';
             category.keywords.forEach(keyword => {
                 const tag = document.createElement('button');
-                tag.className = `text-sm px-4 py-2 rounded-full transition-all active:scale-95 font-bold backdrop-blur-sm ${theme.tagBg}`;
+                tag.className = `text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-full transition-all active:scale-95 font-bold backdrop-blur-sm ${theme.tagBg}`;
                 tag.textContent = keyword;
                 tag.onclick = () => appendKeyword(keyword);
                 keywordsContainer.appendChild(tag);
@@ -513,42 +447,72 @@
                 e.preventDefault(); searchInput.focus();
             }
             if (e.key === 'Escape') {
-                document.getElementById('enhanceModal').classList.add('hidden');
                 document.getElementById('favModal').classList.add('hidden');
-                document.getElementById('settingsModal').classList.add('hidden');
             }
         });
 
+        // 1. القاموس المحلي الأساسي
         function applyLocalDictionary(text) {
-            let translated = text.trim();
-            Object.keys(translationDict).forEach(key => {
-                const regex = new RegExp(key, 'gi');
-                translated = translated.replace(regex, translationDict[key]);
+            let translated = text.trim().replace(/\s+/g, ' ');
+            const normalizeText = (t) => t.replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي');
+
+            const keys = Object.keys(translationDict).sort((a, b) => b.length - a.length);
+            
+            keys.forEach(key => {
+                let regexStr = key.split('').map(char => {
+                    if (/[أإآا]/.test(char)) return '[أإآا]';
+                    if (/[ةه]/.test(char)) return '[ةه]';
+                    if (/[ىي]/.test(char)) return '[ىي]';
+                    return char;
+                }).join('');
+                
+                try {
+                    translated = translated.replace(new RegExp(regexStr, 'gi'), translationDict[key]);
+                } catch(e) {}
             });
-            return translated;
+
+            let words = translated.split(' ');
+            let finalWords = words.map(word => {
+                if (/^[a-zA-Z\s-]+$/.test(word)) return word; 
+                let cleanWord = word.replace(/^(ال|بال|كال|فال|وال|لل|و)/, '');
+                
+                const checkDict = (w) => {
+                    if (translationDict[w]) return translationDict[w];
+                    let normW = normalizeText(w);
+                    for (let k in translationDict) {
+                        if (normalizeText(k) === normW) return translationDict[k];
+                    }
+                    return null;
+                };
+                return checkDict(word) || checkDict(cleanWord) || word;
+            });
+
+            return finalWords.join(' ');
         }
 
-        // AI Translate via Gemini (if key exists), fallback to local dict
-        async function translateTextSmart(text) {
+        // 2. مترجم جوجل المجاني للكلمات المتبقية (كما كان في النسخة الأولى بالضبط)
+        async function translateTextWithAPI(text) {
             if (!translateToggle.checked) return text;
-            if (!geminiApiKey) return applyLocalDictionary(text);
+            
+            let localTranslated = applyLocalDictionary(text);
+            
+            // إذا لم يتبق أي حروف عربية، أرجع النتيجة فوراً
+            if (!/[\u0600-\u06FF]/.test(localTranslated)) { 
+                return localTranslated; 
+            }
 
+            // إذا تبقت حروف عربية، استخدم مترجم جوجل المجاني
             try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: `Translate the following design-related search query from Arabic to English. Return ONLY the English translation, nothing else: "${text}"` }] }]
-                    })
-                });
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=ar&tl=en&dt=t&q=${encodeURIComponent(text)}`;
+                const response = await fetch(url);
                 const data = await response.json();
-                if(data.candidates && data.candidates[0]) {
-                    return data.candidates[0].content.parts[0].text.trim();
+                let fullTranslation = '';
+                if (data && data[0]) {
+                    data[0].forEach(sentenceObj => { if (sentenceObj[0]) fullTranslation += sentenceObj[0]; });
                 }
-                throw new Error("Translation failed");
+                return fullTranslation || localTranslated;
             } catch (error) {
-                console.warn("AI Translation failed, using local dictionary");
-                return applyLocalDictionary(text);
+                return localTranslated; // عند فشل الاتصال، استخدم القاموس المحلي
             }
         }
 
@@ -618,10 +582,11 @@
             }
         }
 
+        // تجميع النص مع الترجمة الفورية الكاملة
         async function getCompiledQueryAsync() {
             let parts = [];
             let txt = searchInput.value.trim();
-            if (txt) { parts.push(await translateTextSmart(txt)); }
+            if (txt) { parts.push(await translateTextWithAPI(txt)); }
             if (selectedFilters.size > 0) parts.push(Array.from(selectedFilters).join(' '));
             return parts.join(' ').trim();
         }
@@ -631,8 +596,12 @@
             const btn = this; const originalHtml = btn.innerHTML;
             if (!searchInput.value.trim() && selectedFilters.size === 0) return;
             
-            btn.innerHTML = `<svg class="animate-spin h-5 w-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> جاري...`;
-            btn.disabled = true;
+            // إظهار اللودينج إذا كانت الترجمة ستعمل
+            if (translateToggle.checked && /[\u0600-\u06FF]/.test(searchInput.value)) {
+                btn.innerHTML = `<svg class="animate-spin h-4 w-4 sm:h-5 sm:w-5 ml-1.5 sm:ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> جاري...`;
+                btn.disabled = true;
+            }
+            
             try { 
                 const finalQuery = await getCompiledQueryAsync();
                 window.open(`https://www.pinterest.com/search/pins/?q=${encodeURIComponent(finalQuery)}`, '_blank');
@@ -645,8 +614,12 @@
             const btn = this; const originalHtml = btn.innerHTML;
             if (!searchInput.value.trim() && selectedFilters.size === 0) return;
             
-            btn.innerHTML = `<svg class="animate-spin h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> <span class="hidden sm:inline">نسخ...</span>`;
-            btn.disabled = true;
+            // إظهار اللودينج إذا كانت الترجمة ستعمل
+            if (translateToggle.checked && /[\u0600-\u06FF]/.test(searchInput.value)) {
+                btn.innerHTML = `<svg class="animate-spin h-4 w-4 ml-1.5 sm:ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> <span class="hidden sm:inline">نسخ...</span>`;
+                btn.disabled = true;
+            }
+            
             try {
                 const finalQuery = await getCompiledQueryAsync();
                 if (finalQuery) await window.copySpecificText(finalQuery);
@@ -660,104 +633,6 @@
                 btn.classList.add('bg-dark-surface', 'text-gray-400', 'border-gray-700');
             });
             analyzeStrength(); searchInput.focus();
-        };
-
-        // --- 4. SETTINGS (API KEY) ---
-        function toggleSettingsModal() {
-            const modal = document.getElementById('settingsModal');
-            document.getElementById('apiKeyInput').value = geminiApiKey;
-            modal.classList.toggle('hidden');
-        }
-
-        function saveApiKey() {
-            geminiApiKey = document.getElementById('apiKeyInput').value.trim();
-            localStorage.setItem('gemini_api_key', geminiApiKey);
-            showToast('تم حفظ إعدادات الذكاء الاصطناعي');
-            toggleSettingsModal();
-        }
-
-        // --- 5. AI ENHANCEMENT (Dynamic) ---
-        function closeEnhanceModal() { document.getElementById('enhanceModal').classList.add('hidden'); }
-
-        document.getElementById('enhanceBtn').onclick = async function() {
-            const rawText = searchInput.value.trim();
-            if (!rawText && selectedFilters.size === 0) { showToast('اكتب فكرة أولاً!', 'error'); searchInput.focus(); return; }
-            if (!geminiApiKey) {
-                showToast('يرجى إدخال مفتاح الذكاء الاصطناعي أولاً', 'error');
-                toggleSettingsModal();
-                return;
-            }
-
-            const btn = this; const originalHtml = btn.innerHTML;
-            btn.innerHTML = `<svg class="animate-spin h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> جاري التوليد...`;
-            btn.disabled = true;
-
-            const container = document.getElementById('enhanceResults');
-            container.innerHTML = `<div class="flex justify-center py-12"><div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-pro"></div></div>`;
-            document.getElementById('enhanceModal').classList.remove('hidden');
-
-            try {
-                const baseEnglish = await translateTextSmart(rawText);
-                const prompt = `
-You are a professional design prompt engineer. The user is looking for design inspiration for: "${baseEnglish}".
-Generate exactly 3 advanced, highly detailed search queries for this topic.
-Return the response ONLY as a valid JSON array of objects, with no markdown formatting or extra text.
-Format:
-[
-  { "title": "For Behance (UI/UX & Cases)", "desc": "Best for detailed case studies", "badge": "PRO", "color": "blue", "query": "..." },
-  { "title": "For AI Generators (Midjourney/DALL-E)", "desc": "Highly descriptive image prompt", "badge": "AI Art", "color": "purple", "query": "..." },
-  { "title": "For Pinterest (Aesthetic)", "desc": "Clean and modern moodboard search", "badge": "Inspiration", "color": "red", "query": "..." }
-]`;
-
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }],
-                        generationConfig: { responseMimeType: "application/json" }
-                    })
-                });
-
-                if(!response.ok) throw new Error("API Error");
-                const data = await response.json();
-                const jsonStr = data.candidates[0].content.parts[0].text;
-                const variations = JSON.parse(jsonStr);
-
-                container.innerHTML = ''; 
-                variations.forEach(v => {
-                    const colorClasses = {
-                        blue: 'bg-blue-500/10 border-blue-500/30 text-blue-400',
-                        purple: 'bg-purple-500/10 border-purple-500/30 text-purple-400',
-                        red: 'bg-red-500/10 border-red-500/30 text-red-400',
-                    };
-                    const colorClass = colorClasses[v.color] || colorClasses.blue;
-
-                    const card = document.createElement('div');
-                    card.className = 'bg-dark-surface p-6 rounded-[2rem] border border-gray-800 relative shadow-lg hover:border-gray-600 transition-colors';
-                    card.innerHTML = `
-                        <span class="absolute top-5 left-5 text-[10px] font-black px-3 py-1 rounded-full border ${colorClass}">${v.badge}</span>
-                        <h4 class="font-black text-white text-lg mb-1 pr-2" dir="ltr">${v.title}</h4>
-                        <p class="text-sm text-gray-400 mb-4 pr-2 font-medium" dir="ltr">${v.desc}</p>
-                        <div class="bg-[#090a0f] p-4 rounded-2xl border border-gray-800 font-mono text-sm text-gray-300 text-left mb-5 break-words selection:bg-pro" dir="ltr">
-                            ${v.query}
-                        </div>
-                        <div class="flex gap-3">
-                            <button onclick="window.copySpecificText('${v.query.replace(/'/g, "\\'")}')" class="flex-1 bg-gray-800 hover:bg-gray-700 text-white px-4 py-3 rounded-full text-sm font-bold transition-colors flex justify-center items-center gap-2">
-                                نسخ النص
-                            </button>
-                            <button onclick="window.open('https://www.pinterest.com/search/pins/?q=${encodeURIComponent(v.query)}', '_blank')" class="flex-1 bg-white hover:bg-gray-200 text-black px-4 py-3 rounded-full text-sm font-bold transition-colors flex justify-center items-center gap-2">
-                                بحث Pinterest
-                            </button>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            } catch (err) {
-                console.error(err);
-                container.innerHTML = `<div class="text-center text-red-400 py-8 font-bold">حدث خطأ في التوليد. تأكد من صحة مفتاح API الخاص بك.</div>`;
-            } finally {
-                btn.innerHTML = originalHtml; btn.disabled = false;
-            }
         };
 
         // --- 6. FAVORITES & EXPORT/IMPORT ---
@@ -779,25 +654,25 @@ Format:
         function renderFavorites() {
             const container = document.getElementById('favListContainer');
             if (savedFavorites.length === 0) {
-                container.innerHTML = '<div class="text-center text-gray-500 py-8 text-sm font-bold">لا توجد محفوظات.</div>';
+                container.innerHTML = '<div class="text-center text-gray-500 py-6 sm:py-8 text-xs sm:text-sm font-bold">لا توجد محفوظات.</div>';
                 return;
             }
             container.innerHTML = '';
             savedFavorites.forEach(fav => {
                 const item = document.createElement('div');
-                item.className = 'bg-dark-surface border border-gray-800 p-5 rounded-3xl mb-4 flex flex-col gap-2 hover:border-yellow-500 hover:shadow-[0_0_15px_rgba(234,179,8,0.1)] transition-all group';
+                item.className = 'bg-dark-surface border border-gray-800 p-4 sm:p-5 rounded-2xl sm:rounded-3xl mb-3 sm:mb-4 flex flex-col gap-2 hover:border-yellow-500 hover:shadow-[0_0_15px_rgba(234,179,8,0.1)] transition-all group';
                 let filtersHtml = fav.filters.length > 0 
-                    ? `<div class="flex gap-1.5 flex-wrap mt-2">${fav.filters.map(f => `<span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full font-bold">${f}</span>`).join('')}</div>`
+                    ? `<div class="flex gap-1.5 flex-wrap mt-1 sm:mt-2">${fav.filters.map(f => `<span class="bg-gray-800 text-gray-300 text-[10px] sm:text-xs px-2.5 py-1 sm:px-3 sm:py-1 rounded-full font-bold">${f}</span>`).join('')}</div>`
                     : '';
                 item.innerHTML = `
                     <div class="flex justify-between items-start">
                         <div class="flex-grow cursor-pointer" onclick="restoreFavorite(${fav.id})">
-                            <p class="font-black text-white text-lg">${fav.query || '<span class="text-gray-500 italic">بدون نص</span>'}</p>
+                            <p class="font-black text-white text-base sm:text-lg leading-snug">${fav.query || '<span class="text-gray-500 italic">بدون نص</span>'}</p>
                             ${filtersHtml}
-                            <p class="text-xs text-gray-500 mt-3 font-semibold">${fav.date}</p>
+                            <p class="text-[10px] sm:text-xs text-gray-500 mt-2 sm:mt-3 font-semibold">${fav.date}</p>
                         </div>
-                        <button onclick="deleteFavorite(${fav.id})" aria-label="حذف" class="text-gray-500 hover:text-red-500 p-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2-2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        <button onclick="deleteFavorite(${fav.id})" aria-label="حذف" class="text-gray-500 hover:text-red-500 p-2 md:p-2.5 bg-gray-800 hover:bg-gray-700 rounded-full transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100 shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2-2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                         </button>
                     </div>
                 `;
@@ -859,11 +734,11 @@ Format:
             const toast = document.createElement('div');
             const colors = type === 'success' ? 'bg-green-500/10 border-green-500/30 text-green-400' : 'bg-red-500/10 border-red-500/30 text-red-400';
             const icon = type === 'success' 
-                ? '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>'
-                : '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+                ? '<svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>'
+                : '<svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
 
-            toast.className = `flex items-center gap-3 px-6 py-4 rounded-full shadow-2xl border backdrop-blur-md ${colors} toast-enter font-bold`;
-            toast.innerHTML = `${icon} <span class="text-sm">${message}</span>`;
+            toast.className = `flex items-center gap-2 sm:gap-3 px-4 py-3 sm:px-6 sm:py-4 rounded-xl sm:rounded-full shadow-2xl border backdrop-blur-md ${colors} toast-enter font-bold w-[90vw] sm:w-auto max-w-md mx-auto sm:mr-0`;
+            toast.innerHTML = `${icon} <span class="text-xs sm:text-sm">${message}</span>`;
             
             container.appendChild(toast);
             setTimeout(() => {
@@ -875,8 +750,6 @@ Format:
         // Close modals on outside click
         window.onclick = function(event) {
             if (event.target === document.getElementById('favModal')) toggleFavoritesModal();
-            if (event.target === document.getElementById('enhanceModal')) closeEnhanceModal();
-            if (event.target === document.getElementById('settingsModal')) toggleSettingsModal();
         }
     </script>
 </body>
